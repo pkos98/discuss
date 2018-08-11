@@ -7,3 +7,7 @@
 * The `PageView` is responsible for rendering, thus containing the `render/2` function
     * `render/2` merges the `web/templates/page/index.html.eex` witht the appropiate `web/templates/layout`
     and returns the rendered html as string as part of the `Conn` struct
+
+#### Migrations
+* In order to document and reliably reproduce/rollback database changes (like schema), Phoenix provides so called `migrations`
+* A `migration` is a an elixir-script (`.exs`) which changes the database (adds tables, alters schemas etc...)
