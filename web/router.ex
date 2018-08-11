@@ -16,6 +16,7 @@ defmodule Discuss.Router do
   scope "/", Discuss do
     pipe_through :browser # Use the default browser stack
 
+    # For each HTTP-GET to "/", execute PageController's index func
     get "/", PageController, :index
   end
 
