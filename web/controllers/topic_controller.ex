@@ -7,7 +7,8 @@ defmodule Discuss.TopicController do
   def new(conn, params) do
     IO.puts "++++"
     IO.inspect conn
-    %Plug.Conn{conn | state: :set}
+    IO.puts "++++"
+    IO.inspect params
   end
 
 end
