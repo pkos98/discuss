@@ -20,6 +20,7 @@ defmodule Discuss.Router do
     get "/", PageController, :index
     # Phoenix uses RESTful conventions, that's why func new
     get "/topics/new", TopicController, :new
+    post "/topics/create", TopicController, :create
   end
 
   # Other scopes may use custom stacks.
