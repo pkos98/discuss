@@ -35,4 +35,12 @@ defmodule Discuss.TopicController do
     end
   end
 
+  def edit(conn, %{"id" => id}) do
+    query = from t in Topic, where: t.id == ^id, select: t
+    topic_to_edit = Repo.all(query)
+                    |> List.first()
+    conn
+    |> render("edit.html", topic: topic_to_edit)
+  end
+
 end

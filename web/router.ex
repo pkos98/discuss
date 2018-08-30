@@ -16,11 +16,11 @@ defmodule Discuss.Router do
   scope "/", Discuss do
     pipe_through :browser # Use the default browser stack
 
-    # For each HTTP-GET to "/", execute PageController's index func
-    get "/", PageController, :index
     # Phoenix uses RESTful conventions, that's why func new
+    get "/", TopicController, :index
     get "/topics/new", TopicController, :new
     post "/topics", TopicController, :create
+    get "/topics/:id/edit", TopicController, :edit
   end
 
   # Other scopes may use custom stacks.
