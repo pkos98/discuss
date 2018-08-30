@@ -56,4 +56,13 @@ defmodule Discuss.TopicController do
     end
   end
 
+  def delete(conn, %{"id" => id}) do
+    # by using the macros (!), the user will automatically be redirected
+    # to an error site (like 404) if anything goes wrong
+    Repo.get!(Topic, id) |> Repo.delete!()
+    conn
+    |> put_flash(:info, "Successfully deleted!")
+    |> redirect(to: topic_path(conn, :index))
+  end
+
 end
