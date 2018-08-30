@@ -5,6 +5,12 @@ defmodule Discuss.TopicController do
   use Discuss.Web, :controller
   alias Discuss.Topic # instead Discuss.Topic.changeset use Topic.changeset
 
+  def index(conn, _params) do
+    all_topics = Repo.all(Topic)
+    conn
+    |> render("index.html", topics: all_topics)
+  end
+
   def new(conn, params) do
     struct = %Discuss.Topic{}
     change = struct
