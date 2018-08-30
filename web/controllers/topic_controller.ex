@@ -36,11 +36,24 @@ defmodule Discuss.TopicController do
   end
 
   def edit(conn, %{"id" => id}) do
-    query = from t in Topic, where: t.id == ^id, select: t
-    topic_to_edit = Repo.all(query)
-                    |> List.first()
+    topic_to_edit = Discuss.Repo.get(Topic, id)
+    changeset = Topic.changeset(topic_to_edit)
     conn
-    |> render("edit.html", topic: topic_to_edit)
+    |> render("edit.html", changeset: changeset, topic: topic_to_edit)
+  end
+
+  def update(conn, %{"id" => id, "topic" => changed_topic}) do
+    old_topic = Repo.get(Topic, id)
+    changeset = old_topic |> Topic.changeset(changed_topic)
+    case Repo.update(changeset) do
+      {:ok, topic} ->
+        conn
+        |> put_flash(:info, "Sucessfully edited topic!")
+        |> redirect(to: topic_path(conn, :index))
+      {:error, err_changeset} ->
+        conn
+        |> render("edit.html", changeset: err_changeset, topic: old_topic)
+    end
   end
 
 end
