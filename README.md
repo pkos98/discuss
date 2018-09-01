@@ -1,8 +1,7 @@
 # Discuss
 
-A demo application which offers a "forum-like" functionality:
- * CRUD topics (create, read, update, delete)
- * Comment topics
+A demo application which provides a "forum-like" functionality.  
+You can create topics, edit them, comment them etc...  
 It's developed using the Phoenix framework (and thus, elixir).
 
 To start your Phoenix app:
