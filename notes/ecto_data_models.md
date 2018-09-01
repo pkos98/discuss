@@ -23,3 +23,4 @@ The corresponding `Discuss.Comment` model:
     timestamps()
   end
 ```
+By defining a schema, ecto automatically defines a struct with the schema fields.
