@@ -53,10 +53,19 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 
 socket.connect()
 
+const createSocket = (topicId) => {
 // Now that you are connected, you can join channels with a topic:
-let channel = socket.channel("topic:subtopic", {})
+let channel = socket.channel(`comments:${topicId}`, {})
 channel.join()
-  .receive("ok", resp => { console.log("Joined successfully", resp) })
+  .receive("ok", resp => { 
+    renderComments(resp.comments);
+  })
   .receive("error", resp => { console.log("Unable to join", resp) })
 
-export default socket
+
+function renderComments(comments) {
+  const renderedComments = comments.map(comment => {
+    return commentTemplate(comment);
+  });
+  document.querySelector(".collection").innerHTML = renderedComments.join("");
+}
