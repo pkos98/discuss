@@ -4,6 +4,7 @@ defmodule Discuss.Topic do
   # assign the database-table "topics" to this model
   schema "topics" do
     field :title, :string
+    has_many :comments, Discuss.Comment
   end
 
   def changeset(struct, params \\ %{}) do
