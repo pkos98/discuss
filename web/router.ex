@@ -26,6 +26,14 @@ defmodule Discuss.Router do
     resources "/topics", TopicController
   end
 
+  scope "/auth", Discuss do
+    pipe_through :browser
+
+    # route to AuthController.request function, which is inside the used Ueberauth-plug
+    get "/:provider", AuthController, :request
+    get "/:provider/callback", AuthController, :callback
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", Discuss do
   #   pipe_through :api
