@@ -24,7 +24,7 @@ config :logger, :console,
 
 config :ueberauth, Ueberauth,
   providers: [
-    github: {Ueberauth.Stragey.Github, []}
+    github: {Ueberauth.Strategy.Github, []}
   ]
 
 config :ueberauth, Ueberauth.Strategy.Github.OAuth,
