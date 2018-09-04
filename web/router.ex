@@ -31,6 +31,7 @@ defmodule Discuss.Router do
     pipe_through :browser
 
     # route to AuthController.request function, which is inside the used Ueberauth-plug
+    get "/signout", AuthController, :sign_out
     get "/:provider", AuthController, :request
     get "/:provider/callback", AuthController, :callback
   end

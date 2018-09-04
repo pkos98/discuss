@@ -3,9 +3,6 @@ defmodule Discuss.AuthController do
   plug Ueberauth
   alias Discuss.User
 
-  def index(conn, _params) do
-  end
-
   @doc """
   Handles the callback-phase of the OAuth-process.
   During this phase the provider (github) calls this route 
@@ -23,7 +20,14 @@ defmodule Discuss.AuthController do
     sign_in(conn, changeset)
   end
 
-  def sign_in(conn, changeset) do
+  def sign_out(conn, user) do
+    conn 
+    |> configure_session(drop: true) 
+    |> assign(:user, nil)
+    |> redirect(to: topic_path(conn, :index))
+  end
+
+  defp sign_in(conn, changeset) do
     case insert_or_update_user(changeset) do
       {:ok, user} -> 
         conn
