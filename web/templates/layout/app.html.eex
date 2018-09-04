@@ -20,6 +20,13 @@
         <a href="/" class="brand-logo">
           Discussions
         </a>
+        
+        <a href="/auth/github" class="oauth-btn right">
+          <button class="btn"> Sign in with GitHub </button>
+        </a>
+
+      </div>
+      
       </div>
     </nav>
 
