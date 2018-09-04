@@ -21,9 +21,16 @@
           Discussions
         </a>
         
-        <a href="/auth/github" class="oauth-btn right">
-          <button class="btn"> Sign in with GitHub </button>
-        </a>
+        <%= if @conn.assigns[:user] do %>
+          <%= link to: auth_path(@conn, :sign_out) , class: "oauth-btn right" do %>
+            <button class="btn">Sign out</button>
+          <% end %>
+        <%= else %>
+          <%= link to: auth_path(@conn, :request, "github") , class: "oauth-btn right" do %>
+            <button class="btn">Sign in with GitHub</button>
+          <% end %>
+        <% end %>
+
 
       </div>
       
