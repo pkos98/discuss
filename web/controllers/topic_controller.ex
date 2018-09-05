@@ -4,7 +4,8 @@ defmodule Discuss.TopicController do
   # equivalent of OOP inheritance
   use Discuss.Web, :controller
   alias Discuss.Topic # instead Discuss.Topic.changeset use Topic.changeset
-  alias Discuss.AuthHelper
+
+  plug Discuss.Plugs.RequireAuthPlug when action in [:new, :create, :edit, :update, :delete]
 
   def index(conn, _params) do
     all_topics = Repo.all(Topic)
@@ -12,8 +13,7 @@ defmodule Discuss.TopicController do
     |> render("index.html", topics: all_topics)
   end
 
-  def new(conn = %Plug.Conn{assigns: %{user: user}}, params) do
-    user = AuthHelper.is_logged_in!(conn)
+  def new(conn, params) do
     struct = %Discuss.Topic{}
     change = struct
              |> Topic.changeset(params)
@@ -21,7 +21,6 @@ defmodule Discuss.TopicController do
   end
 
   def create(conn, %{"topic" => topic}) do
-    user = AuthHelper.is_logged_in!(conn)
     changeset = Topic.changeset(%Topic{}, topic)
 
     case Repo.insert(changeset) do
