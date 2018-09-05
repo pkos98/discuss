@@ -19,10 +19,9 @@ channel.join()
 
   channel.on(`comments:${topicId}:new`, renderComment);
 
-  document.querySelector("button").addEventListener("click", () => {
+  document.querySelector(".add-comment").addEventListener("click", () => {
     const commentContent = document.querySelector("textarea").value;
     channel.push("comment:add", {content: commentContent});
-
   });
 }
 
@@ -31,6 +30,7 @@ function renderComment(event) {
 }
 
 function renderComments(comments) {
+  console.log("Join successful");
   const renderedComments = comments.map(comment => {
     return commentTemplate(comment);
   });
