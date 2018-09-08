@@ -3,6 +3,7 @@
     <div class="form-group">
         <%= text_input f, :title, placeholder: "Title", class: "form-control" %>
         <%= error_tag f, :title %>
+        <%= textarea f, :content, placeholder: "Content", class: "form-control textarea", style: "top: 20px;"%>
     </div>
     <%= submit "Save topic", class: "btn btn-primary" %>
 <% end %>
