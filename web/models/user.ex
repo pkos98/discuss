@@ -5,6 +5,8 @@ defmodule Discuss.User do
     field :email, :string
     field :provider, :string
     field :token, :string
+    field :nickname, :string
+    field :avatar, :string
     has_many :topics, Discuss.Topic
     has_many :comments, Discuss.Topic
 
@@ -13,8 +15,12 @@ defmodule Discuss.User do
 
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:email, :provider, :token])
+    |> cast(params, [:email, :provider, :token, :nickname, :avatar])
     |> validate_required([:email, :provider, :token])
+  end
+
+  def get_name(user) do
+    if user.nickname, do: user.nickname, else: user.email
   end
 
 end
