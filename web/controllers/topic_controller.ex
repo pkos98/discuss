@@ -22,8 +22,6 @@ defmodule Discuss.TopicController do
   end
 
   def create(conn, %{"topic" => topic}) do
-    user = conn.assigns.user
-    # Topic.changeset(%Topic{}, topic)
     changeset = conn.assigns.user
                 |> build_assoc(:topics) # creates a topic associated to this user
                 |> Topic.changeset(topic)
