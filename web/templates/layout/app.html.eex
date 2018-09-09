@@ -9,8 +9,11 @@
 
     <title>Hello Discuss!</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+    
   </head>
 
   <body>
@@ -22,10 +25,13 @@
         </a>
         
         <%= if @conn.assigns[:user] do %>
+          <figure class="image is-48x48 right" style="bottom:10px; right:20px;">
+            <img src="<%= @conn.assigns.user.avatar %>">
+          </figure>
           <%= link to: auth_path(@conn, :sign_out) , class: "oauth-btn right" do %>
             <button class="btn">Sign out</button>
           <% end %>
-        <%= else %>
+        <% else %>
           <%= link to: auth_path(@conn, :request, "github") , class: "oauth-btn right" do %>
             <button class="btn">Sign in with GitHub</button>
           <% end %>
@@ -47,6 +53,5 @@
       </main>
 
     </div> <!-- /container -->
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
