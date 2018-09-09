@@ -1,8 +1,21 @@
 # Discuss
 
+![Discuss-logo](discuss.png)
+
 A demo application which provides a "forum-like" functionality.  
 You can create topics, edit them, comment them etc...  
 It's developed using the Phoenix framework (and thus, elixir).
+
+**Features**:
+* CRUD-operations:
+  * Create/Edit/Delete topics
+  * Create/Edit/Delete comments
+* Authorization using *GitHub OAuth*
+* *WebSocket/Phoenix-Channels* Live loading of comments:
+  * When you are viewing a specific topic, you are directly loading newly posted comments.  
+  No need to refresh the page. WebSockets are handling everything for you!
+
+----------------------
 
 To start your Phoenix app:
 
