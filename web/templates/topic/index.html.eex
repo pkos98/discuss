@@ -1,15 +1,26 @@
 <h2>Topics</h2>
-<ul class="collection">
-    <%= for topic <- @topics do %>
-        <li class="collection-item">
-            <%= link topic.title, to: topic_path(@conn, :show, topic) %>
-            <div class="right">
-                <%= link "Edit", to: topic_path(@conn, :edit, topic) %>
-                <%= link "Delete", to: topic_path(@conn, :delete, topic), method: :delete %>
+<%= for topic <- @topics do %>
+    <div class="card">
+        <header class="card-header">
+            <p class="card-header-title"><%= link topic.title, to: topic_path(@conn, :show, topic) %> </p>
+            <figure class="image is-32x32" style="top:10px;right:-97px;">
+                <image src="<%= topic.user.avatar %>" class="is-rounded">
+            </figure>
+            <p> @<%= get_name(topic.user) %></p>
+        </header>
+        <div class="card-content">
+            <div class="content">
+                <%= topic.content %>
+                <p class="is-size-7 is-italic"> <%= topic.comments |> Enum.count() %> comments</p>
             </div>
-        </li>
-    <% end %>
-</ul>
+        </div>
+        <footer class="card-footer">
+            <p href="#" class="card-footer-item is-italic">Created at <%= Date.to_string(topic.inserted_at)|> String.split(":") |> List.first() %></p>
+            <%= link "Edit", to: topic_path(@conn, :edit, topic), class: "card-footer-item" %>
+            <%= link "Delete", to: topic_path(@conn, :delete, topic), class: "card-footer-item", method: :delete %>
+        </footer>
+    </div>
+<% end %>
 
 <div class="fixed-action-btn">
     <%= link to: topic_path(@conn, :new), class: "btn-floating btn-large waves-effect waves-light red" do %>
