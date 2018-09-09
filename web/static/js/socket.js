@@ -20,7 +20,7 @@ channel.join()
   channel.on(`comments:${topicId}:new`, renderComment);
 
   document.querySelector(".add-comment").addEventListener("click", () => {
-    const commentContent = document.querySelector("textarea").value;
+    const commentContent = document.querySelector("#comment-textarea").value;
     channel.push("comment:add", {content: commentContent});
   });
 }
