@@ -10,6 +10,8 @@ defmodule Discuss.TopicController do
 
   def index(conn, _params) do
     all_topics = Repo.all(Topic)
+                 |> Enum.map(fn(x) -> Repo.preload(x, :user) end)
+                 |> Enum.map(fn(x) -> Repo.preload(x, :comments) end)
     conn
     |> render("index.html", topics: all_topics)
   end
