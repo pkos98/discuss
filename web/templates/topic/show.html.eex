@@ -2,7 +2,8 @@
 <%= @topic.title %>
 
 <div class="input-field">
-    <textarea class="materialize-textarea" placeholder="Comment"></textarea>
+    <textarea class="materialize-textarea" readonly> <%= @topic.content %> </textarea>
+    <textarea class="materialize-textarea" placeholder="Comment" id="comment-textarea"></textarea>
     <button class="btn add-comment">Add comment</button>
     <ul class="collection">
     </ul>
