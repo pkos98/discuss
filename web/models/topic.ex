@@ -7,6 +7,8 @@ defmodule Discuss.Topic do
     field :content, :string
     has_many :comments, Discuss.Comment
     belongs_to :user, Discuss.User
+
+    timestamps()
   end
 
   def changeset(struct, params \\ %{}) do
